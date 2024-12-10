@@ -6,7 +6,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const RakshakContext = createContext()
 
-const contractAddress = "0x7daaa4bcef3f1fd74638ae9a081c95e3910bd68e"
+const contractAddress = "0x7a985ad12b7c4b7b99b0e4e02211fbbba07d6827"
 const abi = [
 	{
 		"inputs": [
@@ -55,6 +55,11 @@ const abi = [
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
 	},
 	{
 		"anonymous": false,
@@ -117,6 +122,25 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -166,6 +190,19 @@ const abi = [
 		],
 		"name": "SoldierAdded",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -485,6 +522,19 @@ const abi = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
 
@@ -534,8 +584,7 @@ export const RakshakProvider=({children})=>{
 		  return []
 		}
 		try {
-		  const camps = contract.getCampData(camp_id)
-		  await camps.wait()
+		  const camps = await contract.getCampData(camp_id)
 		  console.log("Camp data retrieved successfully", camps)
 		  return Array.isArray(camps) ? camps : []
 		} catch (error) {

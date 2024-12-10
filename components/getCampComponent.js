@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import Link from 'next/link'
 
 const GetCampComponent = () => {
   const [camps, setCamps] = useState([])
@@ -47,11 +48,12 @@ const GetCampComponent = () => {
   
 
   return (
-    <div className='flex '>
+    <div className='grid grid-cols-3 gap-x-2'>
       {camps.length > 0 ? (
         camps.map((camp) => (
           <div key={camp.id}>
-            <Card className="w-[350px] mr-4">
+            <Link href={`/camp/${camp.id}`}>
+            <Card className="w-[350px] mr-4 mb-4">
               <CardHeader>
                 <CardTitle>{camp.name}</CardTitle>
                 <CardDescription>Location: {camp.location}</CardDescription>
@@ -64,6 +66,7 @@ const GetCampComponent = () => {
                 <p>Related Data: {camp.isInDanger}</p>
               </CardFooter>
             </Card>
+            </Link>
           </div>
         ))
       ) : (

@@ -1,16 +1,74 @@
 "use client"
 import { useRakshakContext } from '@/contexts/RakshakContext'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 
 const GetCampComponent = () => {
-  const {getCampData} = useRakshakContext()
-  function handleClick(){
-    const camp_id = "camp_002"
-    getCampData(camp_id)
+  const [camps, setCamps] = useState([])
+  const { getAllCamps } = useRakshakContext()
+
+  const parseCampData = (data) => {
+    if (!data ) {
+      console.log("Invalid data format:", data)
+      return []
+    }
+
+    return data[0].map((_, index) => ({
+      id: data[0][index],
+      name: data[1][index],
+      location: data[2][index],
+      date: data[3][index],
+      isInDanger: data[4] ? data[4][index] : "Unknown"
+    }))
   }
+
+  useEffect(()=>{
+    async function fetchCamps() {
+      try {
+        const rawCampData = await getAllCamps() 
+        console.log("Raw camp data retrieved:", rawCampData) 
+    
+        const parsedCamps = parseCampData(rawCampData) 
+        setCamps(parsedCamps) 
+      } catch (error) {
+        console.error("Error retrieving camp data:", error)
+      }
+    }
+    fetchCamps()
+  }, [getAllCamps])
+  
+  
+
   return (
-    <div>
-      <button onClick={handleClick}>Get camp data</button>
+    <div className='flex '>
+      {camps.length > 0 ? (
+        camps.map((camp) => (
+          <div key={camp.id}>
+            <Card className="w-[350px] mr-4">
+              <CardHeader>
+                <CardTitle>{camp.name}</CardTitle>
+                <CardDescription>Location: {camp.location}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p>Date: {camp.date}</p>
+                <p>Status: {camp.isInDanger ? "Alert" : "Safe"}</p>
+              </CardContent>
+              <CardFooter>
+                <p>Related Data: {camp.isInDanger}</p>
+              </CardFooter>
+            </Card>
+          </div>
+        ))
+      ) : (
+        <p>No camps available</p>
+      )}
     </div>
   )
 }

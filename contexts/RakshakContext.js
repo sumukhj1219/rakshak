@@ -6,7 +6,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const RakshakContext = createContext()
 
-const contractAddress = "0xec5593beab7ba9faedabda8aeea247dfd6e66212"
+const contractAddress = "0x7daaa4bcef3f1fd74638ae9a081c95e3910bd68e"
 const abi = [
 	{
 		"inputs": [
@@ -326,6 +326,39 @@ const abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "getAllCampData",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			},
+			{
+				"internalType": "bool[]",
+				"name": "",
+				"type": "bool[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -495,19 +528,22 @@ export const RakshakProvider=({children})=>{
             }
     }
 
-	const getCampData=async(camp_id)=>{
-		if(!contract)
-		{
-			console.log("Contract not loaded")
-			return ;
+	const getCampData = async (camp_id) => {
+		if (!contract) {
+		  console.log("Contract not loaded")
+		  return []
 		}
 		try {
-			const camps = await contract.getCampData(camp_id)
-			console.log("Camp data retrived successfully",camps)
+		  const camps = contract.getCampData(camp_id)
+		  await camps.wait()
+		  console.log("Camp data retrieved successfully", camps)
+		  return Array.isArray(camps) ? camps : []
 		} catch (error) {
-			console.log("Error while retriving the camps", error)
+		  console.error("Error retrieving camps:", error)
+		  return []
 		}
-	}
+	  }
+	  
 
 	const addSoldier=async(camp_id, id, name, city, dob, reported_date, rank, ammunitions)=>{
 		if(!contract)
@@ -523,8 +559,23 @@ export const RakshakProvider=({children})=>{
 		}
 	}
 
+	const getAllCamps=async()=>{
+		if(!contract)
+		{
+			console.log("Contract not loaded")
+			return ;
+		}
+		try {
+			const trx = await contract.getAllCampData()
+			console.log(trx)
+			return trx
+		} catch (error) {
+			console.log("Couldnt retrice data", error)
+		}
+	}
+
     return(
-        <RakshakContext.Provider value={{provider, signer, account, contract, createCamp, getCampData, addSoldier}}>
+        <RakshakContext.Provider value={{provider, signer, account, contract, createCamp, getCampData, addSoldier, getAllCamps}}>
             {children}
         </RakshakContext.Provider>
     )

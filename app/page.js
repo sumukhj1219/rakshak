@@ -12,4 +12,3 @@ const Home = () => {
   return <div>{isClient ? <FeaturesSectionDemo /> : "Rendered on Server"}</div>;
 }
 
-export default Home

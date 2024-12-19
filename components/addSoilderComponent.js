@@ -15,7 +15,6 @@ import { useRakshakContext } from "@/contexts/RakshakContext"
 import { Loader, Upload, PlusSquare } from "lucide-react"
 import { useRouter } from "next/navigation"
 import React, { useState } from "react"
-import ImageUpload from "./imageUpload"
 
 export default function AddSoldierComponent() {
   const { addSoldier } = useRakshakContext();

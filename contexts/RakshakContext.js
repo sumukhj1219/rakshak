@@ -4,7 +4,7 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const RakshakContext = createContext();
 
-const contractAddress = "0xbe185517f5498551b7b45c889b702c2954f75a94";
+const contractAddress = "0x0cd8b054456ca822ecd05c53c161563dec75a7d2";
 const abi=[
 	{
 		"inputs": [
@@ -590,6 +590,25 @@ const abi=[
 				"internalType": "struct CampManager.Ammunition",
 				"name": "",
 				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_camp_id",
+				"type": "string"
+			}
+		],
+		"name": "getSoldierCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",

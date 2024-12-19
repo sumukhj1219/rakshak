@@ -1,7 +1,16 @@
 "use client";
 import { useRakshakContext } from "@/contexts/RakshakContext";
 import React, { useEffect, useState } from "react";
-
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+  } from "@/components/ui/table"
+  
 const GetAmmunitionComponent = () => {
   const [ammunition, setAmmunition] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,16 +39,35 @@ const GetAmmunitionComponent = () => {
       {loading ? (
         <p>Loading ammunition details...</p>
       ) : ammunition ? (
-        <ul>
-          <li>Guns: {ammunition.guns}</li>
-          <li>SMGs: {ammunition.smgs}</li>
-          <li>Launchers: {ammunition.launchers}</li>
-          <li>Grenades: {ammunition.grenades}</li>
-          <li>Assaults: {ammunition.assaults}</li>
-          <li>Snipers: {ammunition.snipers}</li>
-          <li>Bombs: {ammunition.bombs}</li>
-          <li>Melee: {ammunition.melee}</li>
-        </ul>
+        <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Guns</TableHead>
+            <TableHead>SMGs</TableHead>
+            <TableHead>Launchers</TableHead>
+            <TableHead className="text-right">Gernades</TableHead>
+            <TableHead className="text-right">Assaults</TableHead>
+            <TableHead className="text-right">Snipers</TableHead>
+            <TableHead className="text-right">Bombs</TableHead>
+            <TableHead className="text-right">Meele</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          <TableRow>
+            <TableCell className="font-medium">{ammunition.guns}</TableCell>
+            <TableCell> {ammunition.smgs}</TableCell>
+            <TableCell>{ammunition.launchers}</TableCell>
+            <TableCell className="text-right"> {ammunition.grenades}</TableCell>
+            <TableCell className="text-right"> {ammunition.assaults}</TableCell>
+            <TableCell className="text-right">{ammunition.snipers}</TableCell>
+            <TableCell className="text-right">{ammunition.bombs}</TableCell>
+            <TableCell className="text-right">{ammunition.melee}</TableCell>
+
+
+          </TableRow>
+        </TableBody>
+      </Table>
+      
       ) : (
         <p>No ammunition details available.</p>
       )}

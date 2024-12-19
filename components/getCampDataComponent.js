@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from './ui/button';
 import AddSoldierComponent from './addSoilderComponent';
 import AddCampAmmunitions from './addCampAmmunitions';
+import GetSoldierCountComponent from './getSoldierCountComponent';
 
 const GetCampDataComponent = ({ campId }) => {
   const { getCampData, getAllCamps } = useRakshakContext();
@@ -70,7 +71,7 @@ const GetCampDataComponent = ({ campId }) => {
               {campData[3]}
             </span>
           </div>
-
+          <GetSoldierCountComponent />
           <div className="flex flex-col space-y-4">
             <AddSoldierComponent />
             <AddCampAmmunitions />

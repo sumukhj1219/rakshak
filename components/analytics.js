@@ -18,21 +18,21 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart"
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Camp001", ammunitions: 186, soldiers: 80 },
+  { month: "Camp002", ammunitions: 305, soldiers: 200 },
+  { month: "Camp003", ammunitions: 237, soldiers: 120 },
+  { month: "Camp004", ammunitions: 73, soldiers: 190 },
+  { month: "Camp005", ammunitions: 209, soldiers: 130 },
+  { month: "Camp006", ammunitions: 214, soldiers: 140 },
 ]
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Ammunitions",
     color: "hsl(var(--chart-1))",
   },
   mobile: {
-    label: "Mobile",
+    label: "Soldiers",
     color: "hsl(var(--chart-2))",
   },
 } 
@@ -42,7 +42,7 @@ export function Analytics() {
     <Card>
       <CardHeader>
         <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardDescription>Camps</CardDescription>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -53,23 +53,21 @@ export function Analytics() {
               tickLine={false}
               tickMargin={10}
               axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => value.slice(0, 7)}
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+            <Bar dataKey="soldiers" fill="var(--color-desktop)" radius={4} />
+            <Bar dataKey="ammunitions" fill="var(--color-mobile)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>
       <CardFooter className="flex-col items-start gap-2 text-sm">
-        <div className="flex gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-        </div>
+      
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Showing total ammunitions and soldiers.
         </div>
       </CardFooter>
     </Card>

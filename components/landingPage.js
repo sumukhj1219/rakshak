@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Audiowide } from 'next/font/google'
+import { ShieldHalfIcon } from "lucide-react"
 
 const audiowide = Audiowide({ 
   weight: '400',
@@ -35,19 +36,13 @@ export default function LandingPage() {
           "Dharma protects those who protect it"
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button
-            size="lg"
-            className="bg-zinc-900 text-white hover:bg-zinc-800 min-w-[200px] font-medium border border-zinc-800"
-          >
-            ENLIST NOW
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-zinc-600 text-zinc-100 hover:bg-zinc-900/50 min-w-[200px] font-medium"
-          >
-            MISSION BRIEF
-          </Button>
+          <Link href={'/dashboard'} className="w-96">
+            <div className="w-full  rounded-xl p-4 bg-transparent -z-40 flex items-center justify-center bg-white opacity-20">
+              <span className="text-xl font-extrabold flex items-center text-black z-10">
+              Start Protecting <ShieldHalfIcon className="ml-2" size={24} />
+              </span>
+            </div>
+          </Link>
         </div>
       </div>
 

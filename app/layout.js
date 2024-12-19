@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
     <RakshakProvider>
       <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-blend-darken`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-secondary`}
       >
         {children}
       </body>

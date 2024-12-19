@@ -3,34 +3,32 @@ import { useRakshakContext } from "@/contexts/RakshakContext";
 import React, { useEffect, useState } from "react";
 
 const GetSoldierCountComponent = () => {
-  const [count, setCount] = useState(null); // Initialize state
+  const [count, setCount] = useState(null); 
   const { getSoldierCount } = useRakshakContext();
 
   useEffect(() => {
     const fetchCount = async () => {
       try {
-        const result = await getSoldierCount("camp001"); // Await the async function
+        const result = await getSoldierCount("camp001");
         if (result?._hex) {
-          // Handle BigNumber
-          const humanReadableCount = parseInt(result._hex, 16); // Convert BigNumber to an integer
+          const humanReadableCount = parseInt(result._hex, 16);
           setCount(humanReadableCount);
         } else {
-          setCount(result); // Handle other types
+          setCount(result); 
         }
       } catch (error) {
         console.error("Error fetching soldier count:", error);
-        setCount(null); // Handle errors gracefully
+        setCount(null); 
       }
     };
 
     fetchCount();
-  }, [getSoldierCount]); // Add getSoldierCount as a dependency
+  }, [getSoldierCount]); 
 
   return (
     <div>
-      <h2>Soldier Count</h2>
       {count !== null ? (
-        <p>Number of soldiers in camp: {count}</p>
+        <p className="text-muted-foreground">🪖 Soldiers: {count}</p>
       ) : (
         <p>Loading soldier count...</p>
       )}

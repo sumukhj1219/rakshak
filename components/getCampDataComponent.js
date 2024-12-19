@@ -25,6 +25,7 @@ const GetCampDataComponent = ({ campId }) => {
       location: data[2][index],
       date: data[3][index],
       isInDanger: !!data[4][index],
+      ammunitions: data[4][index]
     }));
   };
 
@@ -70,8 +71,10 @@ const GetCampDataComponent = ({ campId }) => {
             <span className="text-sm text-muted-foreground flex items-center gap-x-2">📅
               {campData[3]}
             </span>
+            <GetSoldierCountComponent />
+
           </div>
-          <GetSoldierCountComponent />
+          
           <div className="flex flex-col space-y-4">
             <AddSoldierComponent />
             <AddCampAmmunitions />

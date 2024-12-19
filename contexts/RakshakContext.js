@@ -4,56 +4,8 @@ import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const RakshakContext = createContext();
 
-const contractAddress = "0x0cd8b054456ca822ecd05c53c161563dec75a7d2";
+const contractAddress = "0xc5b84215a5cf29106a625be78e68141909431bbe";
 const abi=[
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_camp_id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_city",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_dob",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_reported_date",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_rank",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_ammunitions",
-				"type": "string"
-			}
-		],
-		"name": "addSoldier",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [
 			{
@@ -117,34 +69,6 @@ const abi=[
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_camp_id",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_camp_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_camp_location",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_camp_creation_date",
-				"type": "string"
-			}
-		],
-		"name": "createCamp",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -183,45 +107,6 @@ const abi=[
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_camp_id",
-				"type": "string"
-			}
-		],
-		"name": "raiseAlert",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_camp_id",
-				"type": "string"
-			}
-		],
-		"name": "resetAlert",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_newRecipient",
-				"type": "address"
-			}
-		],
-		"name": "setRecipient",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -249,72 +134,50 @@ const abi=[
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "string",
 				"name": "_camp_id",
 				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_guns",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_id",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_smgs",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_launchers",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_city",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_grenades",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_dob",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_assaults",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_reported_date",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_snipers",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_rank",
+				"type": "string"
 			},
 			{
-				"internalType": "uint256",
-				"name": "_bombs",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_melee",
-				"type": "uint256"
+				"internalType": "string",
+				"name": "_ammunitions",
+				"type": "string"
 			}
 		],
-		"name": "updateAmmunition",
+		"name": "addSoldier",
 		"outputs": [],
-		"stateMutability": "payable",
+		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"stateMutability": "payable",
-		"type": "receive"
 	},
 	{
 		"inputs": [
@@ -422,6 +285,34 @@ const abi=[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_camp_id",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_camp_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_camp_location",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_camp_creation_date",
+				"type": "string"
+			}
+		],
+		"name": "createCamp",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getAllCampData",
 		"outputs": [
@@ -449,6 +340,60 @@ const abi=[
 				"internalType": "bool[]",
 				"name": "",
 				"type": "bool[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "campId",
+				"type": "string"
+			}
+		],
+		"name": "getAmmunition",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -628,6 +573,19 @@ const abi=[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_camp_id",
+				"type": "string"
+			}
+		],
+		"name": "raiseAlert",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "recipient",
 		"outputs": [
@@ -639,6 +597,102 @@ const abi=[
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_camp_id",
+				"type": "string"
+			}
+		],
+		"name": "resetAlert",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_newRecipient",
+				"type": "address"
+			}
+		],
+		"name": "setRecipient",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_camp_id",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_guns",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_smgs",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_launchers",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_grenades",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_assaults",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_snipers",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_bombs",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_melee",
+				"type": "uint256"
+			}
+		],
+		"name": "updateAmmunition",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
 	}
 ]
 

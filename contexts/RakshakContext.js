@@ -885,6 +885,20 @@ export const RakshakProvider = ({ children }) => {
 		}
 	}
 
+	const getAmmunition=async(campId)=>{
+		if(!contract)
+			{
+				console.log("Contract not loaded")
+			}
+			try {
+				const trx = await contract.getAmmunition(campId)
+				console.log(trx)
+				return trx || []
+			} catch (error) {
+				console.log("Error in getting soldier count", error)
+			}
+	}
+
     return (
         <RakshakContext.Provider
             value={{
@@ -901,7 +915,8 @@ export const RakshakProvider = ({ children }) => {
                 addCampAmmunitions,
 				setRecipient,
 				transferOwnership,
-				getSoldierCount
+				getSoldierCount,
+				getAmmunition
             }}
         >
             {children}

@@ -6,6 +6,7 @@ import { Button } from './ui/button';
 import AddSoldierComponent from './addSoilderComponent';
 import AddCampAmmunitions from './addCampAmmunitions';
 import GetSoldierCountComponent from './getSoldierCountComponent';
+import GetAmmunitionComponent from './getAmmunitionComponent';
 
 const GetCampDataComponent = ({ campId }) => {
   const { getCampData, getAllCamps } = useRakshakContext();
@@ -87,6 +88,7 @@ const GetCampDataComponent = ({ campId }) => {
           </div>
         )
       )}
+      <GetAmmunitionComponent />
     </div>
   );
 };

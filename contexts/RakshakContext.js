@@ -885,19 +885,30 @@ export const RakshakProvider = ({ children }) => {
 		}
 	}
 
-	const getAmmunition=async(campId)=>{
-		if(!contract)
-			{
-				console.log("Contract not loaded")
-			}
-			try {
-				const trx = await contract.getAmmunition(campId)
-				console.log(trx)
-				return trx || []
-			} catch (error) {
-				console.log("Error in getting soldier count", error)
-			}
-	}
+	const getAmmunition = async (campId) => {
+		if (!contract) {
+		  console.log("Contract instance not loaded");
+		  return null;
+		}
+	  
+		try {
+		  const ammoDetails = await contract.getAmmunition(campId);
+		  return {
+			guns: parseInt(ammoDetails[0]._hex, 16),
+			smgs: parseInt(ammoDetails[1]._hex, 16),
+			launchers: parseInt(ammoDetails[2]._hex, 16),
+			grenades: parseInt(ammoDetails[3]._hex, 16),
+			assaults: parseInt(ammoDetails[4]._hex, 16),
+			snipers: parseInt(ammoDetails[5]._hex, 16),
+			bombs: parseInt(ammoDetails[6]._hex, 16),
+			melee: parseInt(ammoDetails[7]._hex, 16),
+		  };
+		} catch (error) {
+		  console.log("Error fetching ammunition details:", error);
+		  return null;
+		}
+	  };
+	  
 
     return (
         <RakshakContext.Provider
